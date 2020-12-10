@@ -6788,7 +6788,7 @@ dfa@^1.0.0:
   dependencies:
     babel-runtime "^6.11.6"
 
-"diez-lorem-ipsum@link:examples/lorem-ipsum/design-language/build/diez-lorem-ipsum-web":
+"diez-lorem-ipsum@link:examples/jisr-tokens/design-language/build/diez-lorem-ipsum-web":
   version "0.0.0"
   uid ""
 

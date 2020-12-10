@@ -1,4 +1,4 @@
-import {Color, DropShadow, Image, Lottie, Toward, Typograph, Font, LinearGradient, Point2D, TextAlignment, MediaQuery} from '@diez/prefabs';
+import {Color, DropShadow, Image, Lottie, Toward, Typograph, FontStyle, Font, LinearGradient, Point2D, TextAlignment, MediaQuery} from '@diez/prefabs';
 import {Margin} from './components/Margin';
 import {jisrDesignSystemImages, jisrDesignSystemTokens} from './designs/JisrDesignSystem.figma';
 
@@ -12,58 +12,82 @@ import {jisrDesignSystemImages, jisrDesignSystemTokens} from './designs/JisrDesi
  * You can collect anything inside a Diez component. Design tokens specified as
  * properties will be made available in the SDKs transpiled with Diez.
  */
-// const colors = {
-//   white: Color.hex('#FFFFFF'),
-//   black: Color.hex('#000010'),
-//   purple: Color.rgb(86, 35, 238),
-//   darkPurple: Color.rgb(22, 11, 54),
-// }
+const colors = {
+  white: Color.hex('#FFFFFF'),
+  black: Color.hex('#000010'),
+  purple: Color.rgb(86, 35, 238),
+  darkPurple: Color.rgb(22, 11, 54),
+}
 
 /**
  * You can reference properties from other components.
  */
-// const palette = {
-//   contentBackground: colors.white,
-//   text: colors.black,
-//   caption: colors.purple,
-//   headerBackground: LinearGradient.make(Toward.Bottom, colors.darkPurple, colors.black),
-// }
+const palette = {
+  contentBackground: colors.white,
+  text: colors.black,
+  caption: colors.purple,
+  headerBackground: LinearGradient.make(Toward.Bottom, colors.darkPurple, colors.black),
+}
 
 /**
  * All of rich language features of TypeScript are at your disposal; for example,
  * you can define an object to keep track of your fonts.
  */
-// const Fonts = {
-//   SourceSansPro: {
-//     Regular: Font.fromFile('assets/SourceSansPro-Regular.ttf'),
-//   },
-// }
+const Fonts = {
+  SourceSansPro: {
+    Regular: Font.fromFile('assets/SourceSansPro-Regular.ttf'),
+  },
+}
+
+const FontWeightName:Record<string, number> = {
+  Thin: 100,
+  ExtraLight: 200,
+  Light: 300,
+  Regular: 400,
+  Medium: 500,
+  SemiBold: 600,
+  Bold: 700,
+  ExtraBold: 800,
+  Black: 900,
+};
 
 /**
  * Typographs encapsulate type styles with support for a specific font, font size,
  * and color. More typograph properties are coming soon.
  */
-// const typography = {
-//   heading1: new Typograph({
-//     font: Fonts.SourceSansPro.Regular,
-//     fontSize: 24,
+// let typography = {
+//   googleFont: new Typograph({
+//     font: Font.googleWebFont('Roboto', { weight: 500, style: FontStyle.Normal }),
+//     fontSize: 10,
 //     color: palette.text,
-//   }),
+//   })
+// };
 
-//   body: new Typograph({
-//     font: Fonts.SourceSansPro.Regular,
-//     fontSize: 18,
+// Object.entries(jisrDesignSystemTokens.typography).forEach(([k, v]) => {
+//   let name = 'sans-serif';
+//   let weight = 400;
+//   const nameSplit = v.font.name.split('-');
+//   if (nameSplit[0] !== 'null') name = nameSplit[0];
+//   if (nameSplit.length === 2) {
+//     if(Object.keys(FontWeightName).includes(nameSplit[1])) weight = FontWeightName[nameSplit[1]];
+//   }
+//   typography[k] = new Typograph({
+//     // letterSpacing: v.letterSpacing,
+//     // fontSize: v.fontSize,
+//     // lineHeight: v.lineHeight,
+//     // color: v.color,
+//     // font: Font.googleWebFont(name, { weight, style: FontStyle.Normal }),
+//     fontSize: 10,
 //     color: palette.text,
-//     alignment: TextAlignment.Center,
-//   }),
+//     font: Font.googleWebFont('Roboto', { weight: 500, style: FontStyle.Normal }),
+//   });
+//   console.log(name);
+//   console.log(weight);
+//   console.log(v);
+//   console.log(k, typography[k]);
+// });
 
-//   caption: new Typograph({
-//     font: Fonts.SourceSansPro.Regular,
-//     fontSize: 14,
-//     color: palette.caption,
-//   }),
-// }
-
+// console.log(Object.keys(typography));
 /**
  * In addition to colors and typography, you can also collect other types of
  * design language primitives in components as well — such as images, icons &
@@ -130,6 +154,6 @@ export const designLanguage = {
   images: jisrDesignSystemImages,
   layoutValues: {},
   strings: {},
-  gradients: jisrDesignSystemTokens.gradients,
+  gradients: {},//jisrDesignSystemTokens.gradients,
   shadows: {},
 }

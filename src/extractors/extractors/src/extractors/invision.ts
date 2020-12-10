@@ -151,6 +151,7 @@ class InVisionExtractor implements Extractor {
             codegenSpec.designLanguageName,
             candidateFont,
             typeStyle.fontFamily.replace(' ', '-'),
+            parseInt(typeStyle.fontWeight),
             {
               fontSize,
               color: getColorInitializer(typeStyle.color || '#000'),

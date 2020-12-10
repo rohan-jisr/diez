@@ -63,6 +63,7 @@ interface XdCharacterStyleRepresentation {
     fontFamily: string;
     fontStyle: string;
     fontSize: number;
+    fontWeight: number;
     fontColor: XdColorValue;
     charSpacing: number;
     lineSpacing: number;
@@ -133,7 +134,7 @@ const assimilateCharacterStyle = async (codegenSpec: CodegenDesignLanguage, elem
     return;
   }
 
-  const {fontFamily, fontStyle, fontSize, fontColor, postscriptName, charSpacing, lineSpacing} = representation.content;
+  const {fontFamily, fontStyle, fontSize, fontColor, postscriptName, charSpacing, lineSpacing, fontWeight} = representation.content;
   const candidateFont = await locateFont(
     fontFamily,
     {name: postscriptName},
@@ -150,6 +151,7 @@ const assimilateCharacterStyle = async (codegenSpec: CodegenDesignLanguage, elem
       codegenSpec.designLanguageName,
       candidateFont,
       postscriptName,
+      fontWeight,
       {
         fontSize,
         letterSpacing: charSpacing,

@@ -315,6 +315,7 @@ class SketchExtractor implements Extractor {
           codegenSpec.designLanguageName,
           candidateFont,
           textStyle.NSFont.attributes.NSFontNameAttribute,
+          0,
           {
             fontSize,
             letterSpacing,

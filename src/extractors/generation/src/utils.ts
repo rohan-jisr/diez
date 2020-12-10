@@ -388,6 +388,7 @@ export const codegenDesignLanguage = async (spec: CodegenDesignLanguage) => {
 
   if (hasTypographs) {
     designLanguageImports.add('Font');
+    designLanguageImports.add('FontStyle');
     exportedInitializer.typography = typographsName;
   }
 

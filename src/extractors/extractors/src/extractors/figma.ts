@@ -21,7 +21,6 @@ import {createWriteStream} from 'fs-extra';
 import {join, relative} from 'path';
 import {parse, URLSearchParams} from 'url';
 import {OAuthable} from '../api';
-// import {chunk, cliReporters, createFolders} from '../utils';
 import {cliReporters, createFolders} from '../utils';
 import {
   getFigmaAccessToken,
@@ -118,6 +117,7 @@ interface FigmaTextStyle {
   fontFamily: string;
   fontPostScriptName: string;
   fontSize: number;
+  fontWeight: number;
   letterSpacing: number;
   lineHeightPx: number;
 }
@@ -363,19 +363,22 @@ const processFigmaNode = async (
         {name: node.style.fontPostScriptName},
       );
       if (candidateFont) {
+        // console.log(candidateFont.name, candidateFont.family, candidateFont.path);
         await registerFont(candidateFont, spec.fonts);
       } else {
+        // console.log(`${node.style.fontFamily}, ${node.style.fontPostScriptName}: Not found!`);
         Log.warningOnce(`Unable to locate system font assets for ${node.style.fontFamily}.`);
       }
 
+      console.log(node);
       const {fontSize, letterSpacing, lineHeightPx} = node.style;
-
       spec.typographs.push({
         name: typographs.get(node.styles.text)!,
         initializer: getTypographInitializer(
           spec.designLanguageName,
           candidateFont,
-          node.style.fontPostScriptName,
+          node.style.fontFamily,
+          node.style.fontWeight,
           {
             letterSpacing,
             fontSize,

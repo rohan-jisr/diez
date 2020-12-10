@@ -78,11 +78,12 @@ export const getTypographInitializer = (
   designLanguageName: string,
   candidateFont: GeneratedFont | undefined,
   fontName: string,
+  fontWeight: number,
   typographData: Partial<SerializedTypographData>,
 ) => {
   const font = candidateFont ?
     `${camelCase(`${designLanguageName} Fonts`)}.${pascalCase(candidateFont.family)}.${pascalCase(candidateFont.style)}` :
-    `new Font({name: "${fontName}"})`;
+    `Font.googleWebFont('${fontName}', { weight: ${fontWeight}, style: FontStyle.Normal })`;
 
   Object.assign(typographData, {font});
   return `new Typograph(${objectToSource(typographData)})`;
